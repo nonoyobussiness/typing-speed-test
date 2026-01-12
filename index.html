@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Load Google Fonts FIRST -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Load Tailwind CDN with inline config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Sora', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-sans bg-neutral-900 p-5 m-4 lg:m-12 ">
+  <header class="w-full">
+    <div class="mx-auto max-w-7x1 px-16 py-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-start gap-3">
+          <img src="assets/images/logo-large.svg" alt="" class="h-10 hidden lg:block ">
+          <img src="assets/images/logo-small.svg" alt="" class="h-12 block lg:hidden">
+        </div>
+        <div class="flex items-center gap-2 text-2xl h-10 text-gray-300">
+          <img src="assets/images/icon-personal-best.svg" alt="">
+          <span class="flex flex-rows">
+            <div class="hidden lg:block">Personal best:</div>
+            <div class="block lg:hidden">Best: </div>
+            <span class="font-semibold text-white"> 92WPM</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="w-auto max-w-7x1 flex justify-center m-4 lg:m-14 ">
+    <div class="w-auto lg:w-full  flex flex-wrap justify-center md:justify-between border-b border-gray-600 gap-6 flex-col lg:flex-row text-xl pb-4">
+      <div class="items-center flex text-gray-300  flex gap-14">
+        <div class="flex items-center flex-col lg:flex-row gap-2 border-r border-gray-600 pr-10 ">
+          <span>WPM:</span>
+          <span id="statWpm" class="font-semibold text-3xl text-white">0</span>
+        </div>
+        <div class="flex flex-col items-center lg:flex-row gap-2 border-r border-gray-600 pr-10">
+          <span>Accuracy:</span>
+          <span id="statAccuracy" class="font-semibold text-3xl text-white">100%</span>
+        </div>
+        <div class="flex flex-col lg:flex-row items-center gap-2 pr-10">
+          <span>Time:</span>
+          <span id="statTime" class="font-semibold text-3xl text-white">0:60</span>
+        </div>
+      </div>
+      <div class="flex gap-6 items-center text-gray-300">
+        <div class="flex text-lg gap-2 border-r border-gray-600 items-center pr-5 lg:block hidden">
+          <span>Difficulty:</span>
+          <button class="border border-gray-600 rounded-lg px-3 py-1"> Easy</button>
+          <button class="border border-gray-600 rounded-lg px-3 py-1 hover "> Medium</button>
+          <button class="border border-blue-400 rounded-lg px-3 py-1 text-blue-400 ">Hard</button>
+        </div>
+
+        <div class="relative block lg:hidden">
+          <button
+            id="difficultyBtn"
+            data-dropdown-toggle="difficultyDropdown"
+            data-dropdown-trigger="click"
+            class="flex gap-2 border border-gray-400 font-semibold items-center text-lg rounded-lg px-12 py-1 text-white"
+          >
+            Hard
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m19 9-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div
+            id="difficultyDropdown"
+            class="hidden absolute mt-2 z-10 bg-neutral-800 border border-gray-600 rounded-lg w-40"
+          >
+            <ul class="p-2 text-white">
+              <li><a class="block p-2 hover:bg-blue-400 rounded">Easy</a></li>
+              <li><a class="block p-2 hover:bg-blue-400 rounded">Medium</a></li>
+              <li><a class="block p-2 hover:bg-blue-400 rounded">Hard</a></li>
+            </ul>
+          </div>
+        </div>
+
+
+
+        <div class="flex gap-2 text-lg items-center lg:block hidden ">
+          <span>Mode:</span>
+          <button class="border border-blue-400 text-blue-400 rounded-lg px-3 py-1">Timer(60s)</button>
+          <button class="border border-gray-600 rounded-lg px-3 py-1 ">Passage</button>
+        </div>
+        <button
+        id="dropdownDelayButton"
+        data-dropdown-toggle="dropdownDelay"
+        data-dropdown-delay="500"
+        data-dropdown-trigger="hover"
+        class="flex text-xl font-semibold gap-2 border border-gray-400 rounded-lg items-center px-10 py-1 text-white lg:hidden sm;block"
+        type="button"
+      >
+        Timed(60s)
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m19 9-7 7-7-7" />
+        </svg>
+        </button>
+
+      <!-- Dropdown -->
+        <div
+          id="dropdownDelay"
+          class="z-10 hidden bg-neutral-800 border border-gray-600 rounded-lg shadow-lg w-44"
+        >
+          <ul class="p-2 text-lg text-white font-medium">
+            <li>
+              <a href="#" class="block p-2 rounded hover:bg-blue-400">30s</a>
+            </li>
+            <li>
+              <a href="#" class="block p-2 rounded hover:bg-blue-400">2mins</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-auto max-w-7x1 flex  my-5 mx-4 md:mx-12 relative">
+    <p id="Hero-text" class="text-gray-600 font-normal text-4xl font-weight-400 md:text-5xl blur leading-normal md:leading-relaxed  ">
+      So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of all living things but I tell you Jerry at that moment, I was a marine biologist.
+    </p>
+    <div class="absolute inset-0 items-center flex flex-col justify-center ">
+      <button id="startbtn" class="bg-blue-500 hover:bg-blue-400 px-6 py-4 rounded-xl text-white text-2xl font-semibold ">Start Typing Test</button>
+      <p id="startbtntext" class="text-white text-2xl font-semibold mt-4  ">Or click the text and start typing</p>
+    </div>
+  </div>
+  
+
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Sreevathsal</a>.
+  </div>
+  <input type="text" id="typingText" class="opacity-0 absolute" autocomplete="off">
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+
+  <script>
+    const startBtn = document.getElementById('startbtn');
+    const heroText = document.getElementById('Hero-text');
+    const startBtnText = document.getElementById('startbtntext');
+    const statTime = document.getElementById('statTime');
+    const typingText = document.getElementById('typingText');
+    const statAccuracy = document.getElementById('statAccuracy');
+    const statWpm = document.getElementById('statWpm');
+
+    let curridx = 0;
+    let spans = [];
+    let state = "idle";
+    let correctChar = 0;
+    let totalTypedChar = 0;
+    let timer = null;
+    let timeLeft = 60;
+    let startTime = null;
+
+    async function getRandomParagraph(x) {
+      try {
+        const response = await fetch("./data.json");
+        const data = await response.json();
+        let y = '';
+        for (let i = 0; i < x; i++) {
+          y += data.easy[i].text;
+        }
+        return y;
+      } catch (error) {
+        console.error("failed to fetch text ", error);
+        return "The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks. Obsidian from Anatolia, lapis lazuli from Afghanistan, and amber from the Baltic—all discovered in a single Mycenaean tomb—suggested commercial connections far more extensive than previously hypothesized.";
+      }
+    }
+
+    function renderParagraph(text) {
+      heroText.innerHTML = '';
+      spans = [];
+      curridx = 0;
+
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        spans.push(span);
+        span.classList.add("text-gray-600");
+        heroText.appendChild(span);
+      }
+    }
+
+    typingText.addEventListener("keydown", (e) => {
+      if (state !== "run") return;
+      const key = e.key;
+
+      if (key.length > 1 && key !== "Backspace") return;
+
+      if (key === "Backspace") {
+        if (curridx > 0) {
+          curridx--;
+          spans[curridx].classList.remove("text-green-400", "text-red-400");
+          totalTypedChar--;
+        }
+        return;
+      }
+      
+      totalTypedChar++;
+      if (curridx >= spans.length) return;
+
+      const expectedchar = spans[curridx].textContent;
+      if (key === expectedchar) {
+        correctChar++;
+        spans[curridx].classList.add("text-green-400");
+      } else {
+        spans[curridx].classList.add("text-red-400");
+      }
+      curridx++;
+      updateWpm();
+      updateAccuracy();
+    });
+
+    function enterRunning() {
+      state = "run";
+      startBtn.classList.add('hidden');
+      heroText.classList.remove('blur');
+      startBtnText.classList.add('hidden');
+    }
+
+    function enterIdle() {
+      state = "idle";
+      startBtn.classList.remove("hidden");
+      heroText.classList.add('blur');
+      startBtnText.classList.remove('hidden');
+    }
+
+    function enterFinished() {
+      state = "finish";
+      typingText.blur();
+      alert(`Test Complete!\nWPM: ${statWpm.textContent}\nAccuracy: ${statAccuracy.textContent}`);
+    }
+
+    async function startTest() {
+      if (timer || state === "run") {
+        return;
+      }
+
+      // Reset all variables
+      timeLeft = 60;
+      curridx = 0;
+      correctChar = 0;
+      totalTypedChar = 0;
+      startTime = Date.now();
+      
+      typingText.value = "";
+      typingText.focus();
+      enterRunning();
+      
+      const text = await getRandomParagraph(2);
+      renderParagraph(text);
+      
+      timer = setInterval(function() {
+        timeLeft--;
+        updateTimeUi(timeLeft);
+        
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          timer = null;
+          enterFinished();
+        }
+      }, 1000);
+    }
+
+    function updateTimeUi(timeLeft) {
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      
+      statTime.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+      statTime.classList.remove("text-white");
+      statTime.classList.add("text-yellow-200");
+    }
+
+    function updateAccuracy() {
+      if (totalTypedChar === 0) {
+        statAccuracy.textContent = "100%";
+        return;
+      }
+      const x = Math.round((correctChar / totalTypedChar) * 100);
+      statAccuracy.textContent = `${x}%`;
+      statAccuracy.classList.add("text-red-400");
+    }
+
+    function updateWpm() {
+      const elapsedtime = Date.now() - startTime;
+      const mins = elapsedtime / 60000;
+      let x = 0;
+      if (mins > 0) {
+        x = Math.round((correctChar / 5) / mins);
+      }
+      
+      statWpm.textContent = x;
+    }
+
+    startBtn.addEventListener('click', startTest);
+    heroText.addEventListener('click', () => {
+      if (state === "idle") {
+        startTest();
+      }
+    });
+  </script>
+
+</body>
+</html>
