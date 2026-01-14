@@ -91,7 +91,7 @@
               <li><a class="block p-2 hover:bg-blue-400 rounded">Easy</a></li>
               <li><a class="block p-2 hover:bg-blue-400 rounded">Medium</a></li>
               <li><a class="block p-2 hover:bg-blue-400 rounded">Hard</a></li>
-            </ul>
+            </ul> my-5 
           </div>
         </div>
 
@@ -142,6 +142,14 @@
       <button id="startbtn" class="bg-blue-500 hover:bg-blue-400 px-6 py-4 rounded-xl text-white text-2xl font-semibold ">Start Typing Test</button>
       <p id="startbtntext" class="text-white text-2xl font-semibold mt-4  ">Or click the text and start typing</p>
     </div>
+   
+  </div>
+  <div id="restart" class="border-t border-gray-600 text-center hidden  ">
+    <button id="restart-btn" class="px-6 py-4 bg-neutral-700  my-5 text-white font-semibold text-2xl rounded-xl items-center inline-flex gap-3 hover:bg-neutral-800 "> Restart Test
+      <img src="assets/images/icon-restart.svg" alt="" class="w-6 h-6">
+    </button>
+    
+
   </div>
   
 
@@ -161,6 +169,8 @@
     const typingText = document.getElementById('typingText');
     const statAccuracy = document.getElementById('statAccuracy');
     const statWpm = document.getElementById('statWpm');
+    const restart = document.getElementById('restart');
+    const restartBtn = document.getElementById('restart-btn');
 
     let curridx = 0;
     let spans = [];
@@ -235,6 +245,7 @@
       startBtn.classList.add('hidden');
       heroText.classList.remove('blur');
       startBtnText.classList.add('hidden');
+      restart.classList.remove('hidden');
     }
 
     function enterIdle() {
@@ -247,8 +258,18 @@
     function enterFinished() {
       state = "finish";
       typingText.blur();
-      alert(`Test Complete!\nWPM: ${statWpm.textContent}\nAccuracy: ${statAccuracy.textContent}`);
+      
     }
+
+    restartBtn.addEventListener('click', () => {
+      clearInterval(timer);
+      timer=null;
+      state="idle";
+      statAccuracy.textContent = "100%";
+      statWpm.textContent = "0";
+      
+      startTest();
+    });
 
     async function startTest() {
       if (timer || state === "run") {
