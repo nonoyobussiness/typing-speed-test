@@ -45,111 +45,131 @@
       </div>
     </div>
   </header>
-  <div class="w-auto max-w-7x1 flex justify-center m-4 lg:m-14 ">
-    <div class="w-auto lg:w-full  flex flex-wrap justify-center md:justify-between border-b border-gray-600 gap-6 flex-col lg:flex-row text-xl pb-4">
-      <div class="items-center flex text-gray-300  flex gap-14">
-        <div class="flex items-center flex-col lg:flex-row gap-2 border-r border-gray-600 pr-10 ">
-          <span>WPM:</span>
-          <span id="statWpm" class="font-semibold text-3xl text-white">0</span>
-        </div>
-        <div class="flex flex-col items-center lg:flex-row gap-2 border-r border-gray-600 pr-10">
-          <span>Accuracy:</span>
-          <span id="statAccuracy" class="font-semibold text-3xl text-white">100%</span>
-        </div>
-        <div class="flex flex-col lg:flex-row items-center gap-2 pr-10">
-          <span>Time:</span>
-          <span id="statTime" class="font-semibold text-3xl text-white">0:60</span>
-        </div>
-      </div>
-      <div class="flex gap-6 items-center text-gray-300">
-        <div class="flex text-lg gap-2 border-r border-gray-600 items-center pr-5 lg:block hidden">
-          <span>Difficulty:</span>
-          <button class="border border-gray-600 rounded-lg px-3 py-1"> Easy</button>
-          <button class="border border-gray-600 rounded-lg px-3 py-1 hover "> Medium</button>
-          <button class="border border-blue-400 rounded-lg px-3 py-1 text-blue-400 ">Hard</button>
-        </div>
+  <div id="main-1">
 
-        <div class="relative block lg:hidden">
-          <button
-            id="difficultyBtn"
-            data-dropdown-toggle="difficultyDropdown"
-            data-dropdown-trigger="click"
-            class="flex gap-2 border border-gray-400 font-semibold items-center text-lg rounded-lg px-12 py-1 text-white"
-          >
-            Hard
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m19 9-7 7-7-7" />
-            </svg>
-          </button>
-
-          <div
-            id="difficultyDropdown"
-            class="hidden absolute mt-2 z-10 bg-neutral-800 border border-gray-600 rounded-lg w-40"
-          >
-            <ul class="p-2 text-white">
-              <li><a class="block p-2 hover:bg-blue-400 rounded">Easy</a></li>
-              <li><a class="block p-2 hover:bg-blue-400 rounded">Medium</a></li>
-              <li><a class="block p-2 hover:bg-blue-400 rounded">Hard</a></li>
-            </ul> my-5 
+    <div class="w-auto max-w-7x1 flex justify-center m-4 lg:m-14 ">
+      <div class="w-auto lg:w-full  flex flex-wrap justify-center md:justify-between border-b border-gray-600 gap-6 flex-col lg:flex-row text-xl pb-4">
+        <div class="items-center flex text-gray-300  flex gap-14">
+          <div class="flex items-center flex-col lg:flex-row gap-2 border-r border-gray-600 pr-10 ">
+            <span>WPM:</span>
+            <span id="statWpm" class="font-semibold text-3xl text-white">0</span>
+          </div>
+          <div class="flex flex-col items-center lg:flex-row gap-2 border-r border-gray-600 pr-10">
+            <span>Accuracy:</span>
+            <span id="statAccuracy" class="font-semibold text-3xl text-white">100%</span>
+          </div>
+          <div class="flex flex-col lg:flex-row items-center gap-2 pr-10">
+            <span>Time:</span>
+            <span id="statTime" class="font-semibold text-3xl text-white">0:60</span>
           </div>
         </div>
-
-
-
-        <div class="flex gap-2 text-lg items-center lg:block hidden ">
-          <span>Mode:</span>
-          <button class="border border-blue-400 text-blue-400 rounded-lg px-3 py-1">Timer(60s)</button>
-          <button class="border border-gray-600 rounded-lg px-3 py-1 ">Passage</button>
-        </div>
-        <button
-        id="dropdownDelayButton"
-        data-dropdown-toggle="dropdownDelay"
-        data-dropdown-delay="500"
-        data-dropdown-trigger="hover"
-        class="flex text-xl font-semibold gap-2 border border-gray-400 rounded-lg items-center px-10 py-1 text-white lg:hidden sm;block"
-        type="button"
-      >
-        Timed(60s)
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m19 9-7 7-7-7" />
-        </svg>
-        </button>
-
-      <!-- Dropdown -->
-        <div
-          id="dropdownDelay"
-          class="z-10 hidden bg-neutral-800 border border-gray-600 rounded-lg shadow-lg w-44"
+        <div class="flex gap-6 items-center text-gray-300">
+          <div class="flex text-lg gap-2 border-r border-gray-600 items-center pr-5 lg:block hidden">
+            <span>Difficulty:</span>
+            <button class="border border-gray-600 rounded-lg px-3 py-1"> Easy</button>
+            <button class="border border-gray-600 rounded-lg px-3 py-1 hover "> Medium</button>
+            <button class="border border-blue-400 rounded-lg px-3 py-1 text-blue-400 ">Hard</button>
+          </div>
+  
+          <div class="relative block lg:hidden">
+            <button
+              id="difficultyBtn"
+              data-dropdown-toggle="difficultyDropdown"
+              data-dropdown-trigger="click"
+              class="flex gap-2 border border-gray-400 font-semibold items-center text-lg rounded-lg px-12 py-1 text-white"
+            >
+              Hard
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m19 9-7 7-7-7" />
+              </svg>
+            </button>
+  
+            <div
+              id="difficultyDropdown"
+              class="hidden absolute mt-2 z-10 bg-neutral-800 border border-gray-600 rounded-lg w-40"
+            >
+              <ul class="p-2 text-white">
+                <li><a class="block p-2 hover:bg-blue-400 rounded">Easy</a></li>
+                <li><a class="block p-2 hover:bg-blue-400 rounded">Medium</a></li>
+                <li><a class="block p-2 hover:bg-blue-400 rounded">Hard</a></li>
+              </ul> my-5 
+            </div>
+          </div>
+  
+  
+  
+          <div class="flex gap-2 text-lg items-center lg:block hidden ">
+            <span>Mode:</span>
+            <button class="border border-blue-400 text-blue-400 rounded-lg px-3 py-1">Timer(60s)</button>
+            <button class="border border-gray-600 rounded-lg px-3 py-1 ">Passage</button>
+          </div>
+          <button
+          id="dropdownDelayButton"
+          data-dropdown-toggle="dropdownDelay"
+          data-dropdown-delay="500"
+          data-dropdown-trigger="hover"
+          class="flex text-xl font-semibold gap-2 border border-gray-400 rounded-lg items-center px-10 py-1 text-white lg:hidden sm;block"
+          type="button"
         >
-          <ul class="p-2 text-lg text-white font-medium">
-            <li>
-              <a href="#" class="block p-2 rounded hover:bg-blue-400">30s</a>
-            </li>
-            <li>
-              <a href="#" class="block p-2 rounded hover:bg-blue-400">2mins</a>
-            </li>
-          </ul>
+          Timed(60s)
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m19 9-7 7-7-7" />
+          </svg>
+          </button>
+  
+        <!-- Dropdown -->
+          <div
+            id="dropdownDelay"
+            class="z-10 hidden bg-neutral-800 border border-gray-600 rounded-lg shadow-lg w-44"
+          >
+            <ul class="p-2 text-lg text-white font-medium">
+              <li>
+                <a href="#" class="block p-2 rounded hover:bg-blue-400">30s</a>
+              </li>
+              <li>
+                <a href="#" class="block p-2 rounded hover:bg-blue-400">2mins</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="w-auto max-w-7x1 flex  my-5 mx-4 md:mx-12 relative">
-    <p id="Hero-text" class="text-gray-600 font-normal text-4xl font-weight-400 md:text-5xl blur leading-normal md:leading-relaxed  ">
-      So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of all living things but I tell you Jerry at that moment, I was a marine biologist.
-    </p>
-    <div class="absolute inset-0 items-center flex flex-col justify-center ">
-      <button id="startbtn" class="bg-blue-500 hover:bg-blue-400 px-6 py-4 rounded-xl text-white text-2xl font-semibold ">Start Typing Test</button>
-      <p id="startbtntext" class="text-white text-2xl font-semibold mt-4  ">Or click the text and start typing</p>
+    <div class="w-auto max-w-7x1 flex  my-5 mx-4 md:mx-12 relative">
+      <p id="Hero-text" class="text-gray-600 font-normal text-4xl font-weight-400 md:text-5xl blur leading-normal md:leading-relaxed  ">
+        So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of all living things but I tell you Jerry at that moment, I was a marine biologist.
+      </p>
+      <div class="absolute inset-0 items-center flex flex-col justify-center ">
+        <button id="startbtn" class="bg-blue-500 hover:bg-blue-400 px-6 py-4 rounded-xl text-white text-2xl font-semibold ">Start Typing Test</button>
+        <p id="startbtntext" class="text-white text-2xl font-semibold mt-4  ">Or click the text and start typing</p>
+      </div>
+     
     </div>
-   
+    <div id="restart" class="border-t border-gray-600 text-center hidden  ">
+      <button id="restart-btn" class="px-6 py-4 bg-neutral-700  my-5 text-white font-semibold text-2xl rounded-xl items-center inline-flex gap-3 hover:bg-neutral-800 "> Restart Test
+        <img src="assets/images/icon-restart.svg" alt="" class="w-6 h-6">
+      </button>
+      
+  
+    </div>
   </div>
-  <div id="restart" class="border-t border-gray-600 text-center hidden  ">
-    <button id="restart-btn" class="px-6 py-4 bg-neutral-700  my-5 text-white font-semibold text-2xl rounded-xl items-center inline-flex gap-3 hover:bg-neutral-800 "> Restart Test
-      <img src="assets/images/icon-restart.svg" alt="" class="w-6 h-6">
-    </button>
-    
+  <div id="finish-page" class=" w-full max-w-7x1 flex justify-center mt-10 hidden ">
+    <div class="flex flex-col gap-2 items-center ">
 
+      <img src="assets/images/icon-completed.svg" alt="" class="m-5 w-20 h-20">
+      <p class="text-white text-3xl font-semibold " >Baseline Established!</p>
+      <p class="text-gray-500 ">You've set the bar. Now the real challenge begins - time to beat it.</p>
+      <div class="w-full max-width-xl grid grid-rows-3 md:grid-cols-3 gap-3 mt-6">
+        <div class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">WPM: <div id="result-wpm" class="font-semibold text-white text-xl"></div></div>
+        <div  class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">Accuracy: <div id="result-accuracy" class="text-red-400 font-semibold text-xl"></div></div>
+        <div class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">Characters <div id="result-characters" class="font-semibold text-xl"></div></div>
+      </div>
+      <button id="beat-score" class="px-4 py-3 bg-white my-5 text-black font-semibold rounded-lg items-center inline-flex gap-1 hover:bg-neutral-800 "> Beat This Score
+        <img src="assets/images/icon-restart.svg" alt="" class="w-4 h-4 invert">
+      </button>
+    </div>
+    
   </div>
   
 
@@ -171,6 +191,12 @@
     const statWpm = document.getElementById('statWpm');
     const restart = document.getElementById('restart');
     const restartBtn = document.getElementById('restart-btn');
+    const main1 = document.getElementById('main-1');
+    const resultWpm = document.getElementById('result-wpm');
+    const resultAcc = document.getElementById('result-accuracy');
+    const resultCha = document.getElementById('result-characters');
+    const beatScore = document.getElementById('beat-score');
+    const finishPage = document.getElementById('finish-page');
 
     let curridx = 0;
     let spans = [];
@@ -238,7 +264,13 @@
       curridx++;
       updateWpm();
       updateAccuracy();
+      
     });
+    beatScore.addEventListener("click", ()=>{
+      finishPage.classList.add('hidden');
+      main1.classList.remove('hidden');
+      enterIdle();
+    })
 
     function enterRunning() {
       state = "run";
@@ -257,7 +289,9 @@
 
     function enterFinished() {
       state = "finish";
-      typingText.blur();
+      resultCharacters();
+      main1.classList.add('hidden');
+      finishPage.classList.remove('hidden');
       
     }
 
@@ -314,11 +348,15 @@
     function updateAccuracy() {
       if (totalTypedChar === 0) {
         statAccuracy.textContent = "100%";
+        resultAcc.textContent = "100%";
+
         return;
       }
       const x = Math.round((correctChar / totalTypedChar) * 100);
       statAccuracy.textContent = `${x}%`;
       statAccuracy.classList.add("text-red-400");
+      resultAcc.textContent =  `${x}%` ;
+
     }
 
     function updateWpm() {
@@ -330,6 +368,22 @@
       }
       
       statWpm.textContent = x;
+      resultWpm.textContent = x ;
+
+    }
+    function resultCharacters(){
+      resultCha.innerHTML = "";
+      const wrong = document.createElement('span');
+      const text = document.createTextNode("/");
+      const correct = document.createElement('span');
+      wrong.textContent = totalTypedChar - correctChar;
+      correct.textContent = correctChar;
+      wrong.classList.add("text-green-400");
+      correct.classList.add("text-red-400");
+      resultCha.appendChild(correct);
+      resultCha.appendChild(text);
+      resultCha.appendChild(wrong);
+
     }
 
     startBtn.addEventListener('click', startTest);
