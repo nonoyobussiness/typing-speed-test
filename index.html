@@ -45,7 +45,7 @@
       </div>
     </div>
   </header>
-  <div id="main-1">
+  <div id="main-1" class="hidden">
 
     <div class="w-auto max-w-7x1 flex justify-center m-4 lg:m-14 ">
       <div class="w-auto lg:w-full  flex flex-wrap justify-center md:justify-between border-b border-gray-600 gap-6 flex-col lg:flex-row text-xl pb-4">
@@ -154,18 +154,18 @@
   
     </div>
   </div>
-  <div id="finish-page" class=" w-full max-w-7x1 flex justify-center mt-10 hidden ">
-    <div class="flex flex-col gap-2 items-center ">
+  <div id="finish-page" class=" w-full max-w-7x1 flex justify-center mt-10 ">
+    <div class="flex flex-col gap-2 items-center min-h-screen ">
 
-      <img src="assets/images/icon-completed.svg" alt="" class="m-5 w-20 h-20">
+      <img src="assets/images/icon-completed.svg" alt="" class="mb-8 w-20 h-20 glow-icon">
       <p class="text-white text-3xl font-semibold " >Baseline Established!</p>
       <p class="text-gray-500 ">You've set the bar. Now the real challenge begins - time to beat it.</p>
-      <div class="w-full max-width-xl grid grid-rows-3 md:grid-cols-3 gap-3 mt-6">
+      <div class="w-full max-w-xl items-center grid grid-rows-3 md:grid-cols-3 gap-3  mt-6 ">
         <div class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">WPM: <div id="result-wpm" class="font-semibold text-white text-xl"></div></div>
         <div  class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">Accuracy: <div id="result-accuracy" class="text-red-400 font-semibold text-xl"></div></div>
         <div class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">Characters <div id="result-characters" class="font-semibold text-xl"></div></div>
       </div>
-      <button id="beat-score" class="px-4 py-3 bg-white my-5 text-black font-semibold rounded-lg items-center inline-flex gap-1 hover:bg-neutral-800 "> Beat This Score
+       <button id="beat-score" class="px-4 py-3 bg-white text-black font-semibold rounded-lg items-center inline-flex gap-1 hover:bg-neutral-800 mt-4"> Beat This Score
         <img src="assets/images/icon-restart.svg" alt="" class="w-4 h-4 invert">
       </button>
     </div>
