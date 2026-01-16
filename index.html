@@ -45,7 +45,7 @@
       </div>
     </div>
   </header>
-  <div id="main-1" class="hidden">
+  <div id="main-1">
 
     <div class="w-auto max-w-7x1 flex justify-center m-4 lg:m-14 ">
       <div class="w-auto lg:w-full  flex flex-wrap justify-center md:justify-between border-b border-gray-600 gap-6 flex-col lg:flex-row text-xl pb-4">
@@ -154,12 +154,12 @@
   
     </div>
   </div>
-  <div id="finish-page" class=" w-full max-w-7x1 flex justify-center mt-10 ">
+  <div id="finish-page" class=" w-full max-w-7x1 flex justify-center mt-10 hidden  ">
     <div class="flex flex-col gap-2 items-center min-h-screen ">
 
-      <img src="assets/images/icon-completed.svg" alt="" class="mb-8 w-20 h-20 glow-icon">
-      <p class="text-white text-3xl font-semibold " >Baseline Established!</p>
-      <p class="text-gray-500 ">You've set the bar. Now the real challenge begins - time to beat it.</p>
+      <img id="result-logo" src="assets/images/icon-completed.svg" alt="" class="mb-8 w-20 h-20 glow-icon">
+      <p id="result-title" class="text-white text-3xl font-semibold " >Baseline Established!</p>
+      <p id="result-subtext" class="text-gray-500 ">You've set the bar. Now the real challenge begins - time to beat it.</p>
       <div class="w-full max-w-xl items-center grid grid-rows-3 md:grid-cols-3 gap-3  mt-6 ">
         <div class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">WPM: <div id="result-wpm" class="font-semibold text-white text-xl"></div></div>
         <div  class="text-gray-500 border border-gray-700 rounded-lg px-5 py-5 flex flex-col ">Accuracy: <div id="result-accuracy" class="text-red-400 font-semibold text-xl"></div></div>
@@ -197,6 +197,10 @@
     const resultCha = document.getElementById('result-characters');
     const beatScore = document.getElementById('beat-score');
     const finishPage = document.getElementById('finish-page');
+    const resultTitle = document.getElementById('result-title');
+    const resultText = document.getElementById('result-subtext');
+    const resultLogo = document.getElementById('result-logo');
+    
 
     let curridx = 0;
     let spans = [];
@@ -206,6 +210,10 @@
     let timer = null;
     let timeLeft = 60;
     let startTime = null;
+    let typingStats = {
+      attempts:0,
+      bestwpm:null
+    };
 
     async function getRandomParagraph(x) {
       try {
@@ -291,6 +299,10 @@
       state = "finish";
       resultCharacters();
       main1.classList.add('hidden');
+      const currentWPM = Number(resultWpm.textContent);
+      const status = getStatus(currentWPM);
+      updateResultUi(status);
+
       finishPage.classList.remove('hidden');
       
     }
@@ -385,6 +397,50 @@
       resultCha.appendChild(wrong);
 
     }
+
+    
+
+    function getStatus(wpm){
+      typingStats.attempts++;
+      
+      if(typingStats.attempts === 1){
+        typingStats.bestwpm = wpm;
+        return "baseline";
+        
+      }
+      else if(wpm > typingStats.bestwpm){
+        typingStats.bestwpm=wpm;
+        return "highest";
+      }
+      return "normal";
+      
+    }
+    function updateResultUi(status){
+      if(status === "normal"){
+        resultLogo.src = "assets/images/icon-completed.svg";
+        resultLogo.classList.add("glow-icon");
+        resultTitle.textContent = "Test Complete!";
+        resultText.textContent = "Solid run. Keep pushing to beat your high score.";
+        beatScore.textContent = "Go Again";
+      }
+      else if(status === "highest"){
+        resultLogo.src = "assets/images/icon-new-pb.svg";
+        resultLogo.classList.remove("glow-icon");
+        resultTitle.textContent = "High Score Smashed!";
+        resultText.textContent = "You're getting faster. That was incredible typing.";
+        beatScore.textContent = "Beat This Score";
+      }
+      else{
+        resultLogo.src = "assets/images/icon-completed.svg";
+        resultLogo.classList.add("glow-icon");
+        resultTitle.textContent = "Baseline Established!";
+        resultText.textContent = "You've set the bar. Now the real challenge begins - time to beat it.";
+        beatScore.textContent = "Beat This Score";
+      }
+
+
+    }
+
 
     startBtn.addEventListener('click', startTest);
     heroText.addEventListener('click', () => {
